@@ -1,31 +1,31 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    fullName: {
-        type: String,
-        required: true
-    },
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true, // Ensure unique usernames
+        trim: true // Remove whitespace
+    },
+    fullname: {
+        type: String,
+        required: true,
+        trim: true // Remove whitespace
     },
     password: {
         type: String,
         required: true,
-        minlength: 6
+        minlength: 6 // Enforce minimum password length
     },
     gender: {
         type: String,
-        required: true,
-        enum: ['male', 'female']
-    },
-    profilePic: {
-        type: String,
-        default: ''
+        enum: ['male', 'female'], // Allow specific values
+        required: true
     }
-}, { timestamps: true });
+}, {
+    timestamps: true // Automatically manage createdAt and updatedAt fields
+});
 
+// Create and export the User model
 const User = mongoose.model('User', userSchema);
-
 export default User;
