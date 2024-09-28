@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+   
     username: {
         type: String,
         required: true,
@@ -21,7 +22,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['male', 'female'], // Allow specific values
         required: true
-    }
+    },
+    profilePic: {
+        type: String
+        
+    },
 }, {
     timestamps: true // Automatically manage createdAt and updatedAt fields
 });
