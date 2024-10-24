@@ -13,6 +13,9 @@ const SignUp = () => {
     gender: ''
   });
 
+  const handleCheckboxChange = (gender) => {
+    setInput({...input, gender})
+  }
   const{loading, signUp} = useSignup()
 
   const [showPasswords, setShowPasswords] = useState({
@@ -20,18 +23,13 @@ const SignUp = () => {
     confirmPassword: false
   });
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signUp(input);
+    await signUp(input)
   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setInput(prevInput => ({
-      ...prevInput,
-      [name]: value
-    }));
-  }
+  
 
   const togglePasswordVisibility = (field) => {
     setShowPasswords(prevState => ({
@@ -64,7 +62,7 @@ const SignUp = () => {
               className="input input-bordered w-full max-w-xs text-sm sm:text-base" 
               name="username"
               value={input.username}
-              onChange={handleInputChange}
+              onChange={(e) => setInput({...input, username: e.target.value})}
             />
           </div>
           <div className="flex flex-col">
@@ -75,7 +73,7 @@ const SignUp = () => {
               className="input input-bordered w-full max-w-xs text-sm sm:text-base" 
               name="fullname"
               value={input.fullname}
-              onChange={handleInputChange}
+              onChange={(e) => setInput({...input, fullname: e.target.value})}
             />
           </div>
           <div className="flex flex-col">
@@ -88,7 +86,7 @@ const SignUp = () => {
                 id="password"
                 name="password"
                 value={input.password}
-                onChange={handleInputChange}
+                onChange={(e) => setInput({...input, password: e.target.value})}
               />
               <button
                 type="button"
@@ -117,7 +115,7 @@ const SignUp = () => {
             id="confirmPassword"
             name="confirmPassword"
             value={input.confirmPassword}
-            onChange={handleInputChange}
+            onChange={(e) => setInput({...input, confirmPassword: e.target.value})}
             />
             <button
                 type="button"
@@ -136,7 +134,7 @@ const SignUp = () => {
              </button>
           </div>
           </div>
-          <Checkbox />
+          <Checkbox onCheckboxChange={handleCheckboxChange} selectedGender={input.gender}/>
           <div className="flex justify-center">
             <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm sm:text-base">Sign Up</button>
           </div>

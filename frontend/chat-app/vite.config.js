@@ -14,6 +14,9 @@ plugins: [react()],
       "/api":{
         target: "http://localhost:5000",
       }
+    },
+    watch: {
+      usePolling: true,
     }
   },
 });
