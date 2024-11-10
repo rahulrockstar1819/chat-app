@@ -22,11 +22,11 @@ const App = () => {
   return (
     <BrowserRouter>
     <ChakraProvider theme={theme}>
-      <Routes>
-        <Route path="/app/login" element={authUser ? <Navigate to="/app/home" /> : <Loginpage />} />
-        <Route path="/app/signup" element={authUser ? <Navigate to="/app/login" /> : <SignUp />} />
-        <Route path="/app/home" element={authUser ? <Home /> : <Navigate to="/app/login" />} />
-      </Routes>
+        <Routes>
+         <Route path="/app/login" element={authUser ? <Navigate to="/app/home" /> : <Loginpage />} />
+          <Route path="/app/signup" element={authUser ? <Navigate to="/app/login" /> : <SignUp />} />
+          <Route path="/app/home" element={authUser ? <Home /> : <Navigate to="/app/login" />} />
+        </Routes>
       </ChakraProvider>
     </BrowserRouter>
    

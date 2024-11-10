@@ -14,10 +14,12 @@ const LogoutBtn = () => {
   };
 
   return (
-    <div className="absolute m-3 bottom-0 left-0">
-      {!loading ? (
-                <MdOutlineLogout className="w-6 h-6 text-black cursor-pointer rotate-180" onClick={handleLogout} />
-       ) : <Spinner size='md' />}
+    <div className="w-10 h-10 bottom-8 left-7 fixed backdrop-blur-sm">
+      <button onClick={handleLogout} className="m">
+        {!loading ? (
+                  <MdOutlineLogout className="w-6 h-6 text-black cursor-pointer rotate-180" />
+         ) : <Spinner size='md' />}
+      </button>
     </div>
   )
 }
