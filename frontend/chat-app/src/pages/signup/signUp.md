@@ -4,6 +4,7 @@ import useSignup from "../../hooks/useSignup"
 import Checkbox from './check-box';
 
 
+
 const SignUp = () => {
   const [input, setInput] = useState({
     username: '',
@@ -54,8 +55,8 @@ const SignUp = () => {
         `}</style>
         <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-5 text-center mt-4">Sign Up</h2>
         <form className="space-y-3 sm:space-y-4 w-full px-4 sm:px-6" onSubmit={handleSubmit}>
-          <div className="flex flex-col">
-            <label htmlFor="username" className="block mb-1 font-medium text-sm sm:text-base">Username</label>
+        <HStack gap="10" width="full">
+        <InputGroup flex="1" startElement={<LuUser />}>
             <input 
               type="text" 
               placeholder="Username" 
@@ -64,6 +65,8 @@ const SignUp = () => {
               value={input.username}
               onChange={(e) => setInput({...input, username: e.target.value})}
             />
+          </InputGroup>
+          </HStack>
           </div>
           <div className="flex flex-col">
             <label htmlFor="fullname" className="block mb-1 font-medium text-sm sm:text-base">Full Name</label>

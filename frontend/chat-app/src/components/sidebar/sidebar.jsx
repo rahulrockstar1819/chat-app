@@ -1,31 +1,20 @@
-import { useState } from "react"
 import Searchinput from "./Searchinput"
 import Conversations from "./Conversations"
 import LogoutBtn from "./LogoutBtn"
 
 
 
+const Sidebar = () => {
 
-const Sidebar = ({onSelect}) => {
-  const [isVisible, setIsVisible] = useState(true);
-
-  const handleConversationSelect = () => {
-    setIsVisible(false);
-    if (onSelect) {
-      onSelect(); // Call the onSelect function passed from the parent
-    }
-};
 
   return (
-    isVisible && (
-    <div className="w-full m-2 scroll-y-auto">
-     <Searchinput />
-      <div className="divider px-3"></div>
-      <Conversations  onSelect={handleConversationSelect} />
+    <div className= 'h-full p-4 flex flex-col bg-slate-400 lg:rounded-r-2xl'>
+      <Searchinput />
+      <div className="divider px-3" />
+      <Conversations />
       <LogoutBtn />
     </div>
-  )
 );
-}
+};
 
-export default Sidebar
+export default Sidebar; 

@@ -1,7 +1,7 @@
 import useConversations from "../../zustand/useConversation"
 
 
-const Conversation = ({conversation,lastIdx,onSelect}) => {
+const Conversation = ({conversation,lastIdx}) => {
   const {selectedConversation, setSelectedConversation} = useConversations();
   const isSelected = selectedConversation?._id === conversation._id;
   return (
@@ -10,7 +10,6 @@ const Conversation = ({conversation,lastIdx,onSelect}) => {
       ${isSelected ? "bg-sky-500" : ""}`}
       onClick={() => {
               setSelectedConversation(conversation);
-               onSelect();
             }}>
       <div className="mask mask-squircle">
         <div className="w-12 rounded-full">

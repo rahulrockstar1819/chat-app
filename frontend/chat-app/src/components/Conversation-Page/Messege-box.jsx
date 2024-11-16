@@ -1,64 +1,43 @@
 import TypingBox from "./typing-box"
-import Messeges from "./Messeges"
+import Messages from "./Messeges"
 import useConversation from "../../zustand/useConversation"
 import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
-import useSidebarToggle from "../../hooks/useSidebarToggle"
 
 
 
 
 const MessegeBox = () => {
   const {selectedConversation, setSelectedConversation} = useConversation();
-  const {toggleSidebar, isSidebarVisible} = useSidebarToggle();
-  console.log(toggleSidebar)
 
   useEffect(() => {
+    console.log(selectedConversation);
     return () => setSelectedConversation(null)
-  },[setSelectedConversation])
+  },[selectedConversation, setSelectedConversation])
   
   return (
-    <div className='flex flex-col h-full w-full'>
-            {!selectedConversation ? (
-				<NoChatSelected />
-			) : (
-				<>
-             <div className='bg-slate-400 h-16 px-4 py-2 mb border- rounded-md '>
-                <div className="flex items-center justify-start h-full gap-2 ">
-                <button onClick={toggleSidebar} className="text-gray-700">
-                {!isSidebarVisible ? "Show Sidebar" : "Hide Sidebar"}
-              </button>
-                <div className="avatar">
-                 <div className="mask mask-squircle w-10">
-                   <img src= {selectedConversation?.profilePic} />
-                 </div>
-                 </div>
-                <span className='label-text'></span>
-                <span className='text-gray-500 font-bold'>{selectedConversation?.fullname}</span>
-                </div>
-             </div>
-             <Messeges />
-             <TypingBox />
-        </>
-      )}
-    </div>
+      <>
+        <div className="bg-slate-500 px-4 py-2 h-14 max-sm:h-[62px] flex items-center">
+          <div className="mask mask-squircle">
+            <div className="w-12 rounded-full"> 
+              {selectedConversation && selectedConversation.profilePic && (
+                <img src={selectedConversation.profilePic} alt='user avatar'/>
+              )}
+            </div>
+          </div>
+          <span className="label-text"></span>{" "}
+          <span className="text-white font-bold ml-2">
+            {selectedConversation && selectedConversation.fullname}
+          </span>
+          <button className="flex justify-end items-end">Call</button>
+        </div>
+        <div className="flex-1 lg:h-[calc(100vh-15vh)] max-sm:h-[calc(100vh-11vh)] overflow-y-auto bg-orange-500 rounded-xl">
+            <Messages />
+          </div>
+        <TypingBox />
+      </>
   )
-}
-
-export default MessegeBox
-
-
-//Here goes the no chat selected part
-//In future improve the ui by implimentin some gif animation
-const NoChatSelected = () => {
-	const { authUser } = useAuthContext();
-	return (
-		<div className='flex items-center justify-center w-full h-full'>
-			<div className='px-4 text-center sm:text-lg md:text-xl text-gray-500 font-semibold flex flex-col items-center gap-2'>
-				<p>Welcome 👋 {authUser.fullName} ❄</p>
-				<p>Select a chat to start messaging</p>
-				<Messeges className='text-3xl md:text-6xl text-center' />
-			</div>
-		</div>
-	);
 };
+
+export default MessegeBox;
+

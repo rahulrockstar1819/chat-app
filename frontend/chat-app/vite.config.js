@@ -8,6 +8,7 @@ plugins: [react()],
     plugins: [tailwindcss()],
    },
   },
+  
   server: {
     port: 3000,
     proxy: {

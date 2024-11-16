@@ -1,28 +1,19 @@
 import Sidebar from "../../components/sidebar/sidebar"
-import MessegeBox from "../../components/Conversation-Page/Messege-box"
-import useSidebarToggle from "../../hooks/useSidebarToggle"
+import ProfileInfo from "../../components/dashboard/Profile-Info";
 
 const Home = () => {
-    const { isSidebarVisible, hideSidebar } = useSidebarToggle();
-
-    const handleConversationSelect = () => {
-        hideSidebar();
-    };
-
+    
     return(
-        <div className="flex relative h-[calc(100Vh-0.5px)] w-[calc(100Vw-1px)] rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10">
-            <div className="flex-col w-full flex border-black rounded-md m-4">
-            {isSidebarVisible && ( 
-                <div className="transition-all duration-500 ease-in-out absolute bg-white border- rounded-lg w-[27%] h-[95%] overflow-y-auto pr-4">
-                    <Sidebar onSelect={handleConversationSelect} />
+        <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-4 h-screen md:h-screen overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0'>
+                <div className='flex-1 col-span-3'>
+                    <Sidebar />
                 </div>
-            )}
-                <div className={`transition-all duration-500 ease-in-out absolute right-0 bg-white border rounded-lg h-[95%] ${isSidebarVisible ? "w-[70%] mr-4" : "w-[calc(100%-16px)]"}`}>
-                    <MessegeBox />
+                <div className="flex-1 hidden lg:block col-span-9">
+                <ProfileInfo />
                 </div>
-            </div>
         </div>
+
     )
 }
 
-export default Home;
+export default Home; 
